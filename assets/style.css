@@ -1,0 +1,994 @@
+:root {
+  --ink: #111317;
+  --muted: #6b7280;
+  --paper: #f7f4ef;
+  --paper-2: #fbfaf8;
+  --white: #ffffff;
+  --navy: #0f1722;
+  --charcoal: #171c26;
+  --gold: #b58b45;
+  --gold-soft: #e8d6b2;
+  --line: rgba(17, 24, 39, 0.12);
+  --overlay: rgba(9, 14, 23, 0.48);
+  --shadow: 0 28px 80px rgba(15, 23, 34, 0.12);
+  --soft-shadow: 0 12px 30px rgba(15, 23, 34, 0.08);
+  --gradient-gold: linear-gradient(135deg, #8a6830 0%, #b58b45 55%, #e2c58f 100%);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(181,139,69,.07), transparent 22%),
+    linear-gradient(180deg, #f9f7f3 0%, #f3efe8 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.68;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; }
+p { margin: 0 0 1rem; color: var(--muted); }
+h1, h2, h3 {
+  margin: 0 0 .8rem;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+}
+h1 { font-size: clamp(2.8rem, 6vw, 5.8rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.8rem); }
+h3 { font-size: 1.12rem; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 18px clamp(20px, 5vw, 72px);
+  background: rgba(251, 250, 248, .78);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 850;
+  font-size: 1.05rem;
+}
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--gradient-gold);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(181,139,69,.24);
+  font-size: .8rem;
+}
+.brand-text {
+  letter-spacing: -.02em;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  color: var(--muted);
+  font-size: .94rem;
+}
+.nav a:hover {
+  color: var(--navy);
+}
+.nav-cta {
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(15,23,34,.16);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: .95rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: .75rem;
+  font-weight: 900;
+}
+.eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+}
+.eyebrow.light {
+  color: rgba(255,255,255,.82);
+}
+.eyebrow.light::before {
+  background: rgba(255,255,255,.65);
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 850;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.button:hover { transform: translateY(-1px); }
+.button.primary {
+  color: #fff;
+  background: var(--navy);
+  box-shadow: 0 16px 36px rgba(15,23,34,.18);
+}
+.button.full { width: 100%; }
+
+.hero-photo-first {
+  position: relative;
+  min-height: 86vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.hero-backdrop,
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+.hero-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(10,14,22,.72) 0%, rgba(10,14,22,.46) 38%, rgba(10,14,22,.34) 100%),
+    linear-gradient(180deg, rgba(10,14,22,.10) 0%, rgba(10,14,22,.44) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(46px, 8vw, 118px) clamp(20px, 5vw, 72px);
+}
+.hero-panel {
+  max-width: 690px;
+  padding: clamp(28px, 5vw, 44px);
+  border-radius: 34px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+.hero-panel h1,
+.hero-panel p {
+  color: #fff;
+}
+.lead {
+  font-size: clamp(1.08rem, 2vw, 1.26rem);
+  max-width: 620px;
+}
+.hero-panel .button { margin-top: 18px; }
+
+.image-ribbon,
+.assignments-premium,
+.steps-section,
+.form-photo-section,
+.legal-main {
+  padding: clamp(58px, 8vw, 110px) clamp(20px, 5vw, 72px);
+}
+
+.image-ribbon {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr .8fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.image-ribbon figure {
+  margin: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  min-height: 520px;
+}
+.image-ribbon figure img {
+  height: 100%;
+  object-fit: cover;
+}
+.ribbon-copy {
+  padding: clamp(26px, 4vw, 40px);
+  border-radius: 34px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(255,255,255,.86);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.why-points {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+.why-points article {
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: rgba(181,139,69,.08);
+}
+.why-points strong,
+.why-points span { display: block; }
+.why-points span { color: var(--muted); margin-top: 4px; }
+
+.section-heading {
+  max-width: 860px;
+  margin-bottom: 34px;
+}
+.section-heading.centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.assignment-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.assignment-card {
+  overflow: hidden;
+  border-radius: 28px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: var(--soft-shadow);
+}
+.assignment-card img {
+  height: 210px;
+  object-fit: cover;
+}
+.assignment-card div {
+  padding: 20px;
+}
+.assignment-card p { margin-bottom: 0; }
+
+.eligibility-premium {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+  padding: 0 clamp(20px, 5vw, 72px) clamp(58px, 8vw, 110px);
+}
+.eligibility-photo {
+  border-radius: 36px;
+  overflow: hidden;
+  min-height: 580px;
+  box-shadow: var(--shadow);
+}
+.eligibility-photo img {
+  height: 100%;
+  object-fit: cover;
+}
+.eligibility-content {
+  padding: clamp(28px, 4vw, 42px);
+  border-radius: 34px;
+  background: var(--navy);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.eligibility-content h2,
+.eligibility-content p {
+  color: #fff;
+}
+.eligibility-content .eyebrow {
+  color: rgba(255,255,255,.82);
+}
+.eligibility-content .eyebrow::before {
+  background: rgba(255,255,255,.72);
+}
+.standard-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+.standard-list article {
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.standard-list strong,
+.standard-list span { display: block; }
+.standard-list span { color: rgba(255,255,255,.74); margin-top: 4px; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.steps-grid article {
+  padding: 26px;
+  border-radius: 28px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: var(--soft-shadow);
+}
+.steps-grid span {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.form-photo-section {
+  display: grid;
+  grid-template-columns: .95fr 1.05fr;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+}
+.form-photo {
+  border-radius: 34px;
+  overflow: hidden;
+  min-height: 640px;
+  box-shadow: var(--shadow);
+}
+.form-photo img {
+  height: 100%;
+  object-fit: cover;
+}
+.form-card {
+  padding: clamp(28px, 5vw, 44px);
+  border-radius: 34px;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: var(--shadow);
+}
+.registry-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+.registry-form label:not(.checkbox-row) {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 850;
+  font-size: .92rem;
+}
+input, select {
+  width: 100%;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 24, 39, 0.14);
+  background: #fff;
+  font: inherit;
+}
+input:focus, select:focus {
+  outline: 3px solid rgba(181,139,69,.16);
+  border-color: rgba(181,139,69,.40);
+}
+.checkbox-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.checkbox-row input {
+  width: auto;
+  height: auto;
+  margin-top: 5px;
+  accent-color: var(--gold);
+}
+.recaptcha-box {
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  border: 1px dashed rgba(17,24,39,.18);
+  background: var(--paper-2);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.thank-main {
+  min-height: 72vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(58px, 8vw, 110px) clamp(20px, 5vw, 72px);
+}
+.thank-card {
+  max-width: 840px;
+  width: 100%;
+  text-align: center;
+  padding: clamp(32px, 6vw, 60px);
+  border-radius: 36px;
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: var(--shadow);
+}
+.thank-card.premium {
+  background:
+    radial-gradient(circle at top right, rgba(181,139,69,.14), transparent 20%),
+    rgba(255,255,255,.84);
+}
+.thank-icon {
+  font-size: 3rem;
+  margin-bottom: 18px;
+}
+.thank-next {
+  display: grid;
+  gap: 14px;
+  max-width: 660px;
+  margin: 28px auto;
+}
+.thank-next article {
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(181,139,69,.08);
+  border: 1px solid rgba(181,139,69,.10);
+  text-align: left;
+}
+.thank-next strong,
+.thank-next span { display: block; }
+.thank-next span { color: var(--muted); margin-top: 5px; }
+
+.legal-main {
+  padding-top: clamp(48px, 7vw, 84px);
+}
+.premium-hero {
+  max-width: 960px;
+  margin: 0 auto 32px;
+}
+.premium-doc {
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 34px;
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.premium-doc section {
+  padding: clamp(24px, 4vw, 38px);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+}
+.premium-doc section:last-child {
+  border-bottom: 0;
+}
+.premium-doc h2 {
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+}
+.premium-doc ul {
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.site-footer {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  padding: 56px clamp(20px, 5vw, 72px) 24px;
+  background: var(--charcoal);
+  color: #fff;
+}
+.site-footer p,
+.site-footer a { color: rgba(255,255,255,.74); }
+.site-footer a { display: block; margin-bottom: 8px; }
+.footer-brand { color: #fff !important; margin-bottom: 14px; }
+.disclaimer {
+  max-width: 720px;
+  font-size: .92rem;
+}
+.copyright {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding-top: 18px;
+  margin: 10px 0 0;
+}
+
+@media (max-width: 1120px) {
+  .image-ribbon,
+  .eligibility-premium,
+  .form-photo-section,
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+  .assignment-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 880px) {
+  .nav { display: none; }
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-photo-first { min-height: 76vh; }
+  .image-ribbon figure { min-height: 360px; }
+}
+@media (max-width: 620px) {
+  h1 { font-size: 2.55rem; }
+  .assignment-photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-panel,
+  .form-card,
+  .eligibility-content,
+  .thank-card {
+    padding: 24px;
+  }
+  .button { width: 100%; }
+}
+
+
+/* Image quality + fallback improvements */
+.image-fallback {
+  background:
+    linear-gradient(135deg, rgba(15, 23, 34, 0.92), rgba(181, 139, 69, 0.72)),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), transparent 24%);
+  position: relative;
+}
+.image-fallback::before {
+  content: "Image preview";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,.78);
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .82rem;
+}
+.assignment-card img,
+.hero-backdrop img,
+.image-ribbon figure img,
+.eligibility-photo img,
+.form-photo img {
+  background: #eee8dd;
+}
+.hero-backdrop img {
+  object-position: center 42%;
+}
+.image-ribbon figure:first-child img {
+  object-position: center center;
+}
+.image-ribbon figure:last-child img {
+  object-position: center center;
+}
+.assignment-card:nth-child(1) img { object-position: center center; }
+.assignment-card:nth-child(2) img { object-position: center center; }
+.assignment-card:nth-child(3) img { object-position: center center; }
+.assignment-card:nth-child(4) img { object-position: center center; }
+.assignment-card:nth-child(5) img { object-position: center center; }
+.assignment-card:nth-child(6) img { object-position: center center; }
+.assignment-card:nth-child(7) img { object-position: center center; }
+.assignment-card:nth-child(8) img { object-position: center center; }
+
+.assignment-card::after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: var(--gradient-gold);
+  opacity: .55;
+}
+.assignment-card div {
+  min-height: 174px;
+}
+
+
+/* Full-image display fixes */
+.hero-backdrop img,
+.image-ribbon figure img,
+.assignment-card img,
+.eligibility-photo img,
+.form-photo img {
+  object-fit: contain;
+  object-position: center center;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255,255,255,.28), transparent 28%),
+    linear-gradient(135deg, #efe6d7, #d7c6ad);
+}
+
+/* keep hero photo dominant while showing full image */
+.hero-backdrop {
+  background:
+    linear-gradient(135deg, #101722, #4a3924);
+}
+.hero-backdrop img {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+/* for card photos: allow full image, not half-cropped */
+.assignment-card img {
+  height: 240px;
+  padding: 10px;
+}
+
+/* taller photo areas can show full image without awkward cropping */
+.image-ribbon figure,
+.eligibility-photo,
+.form-photo {
+  background:
+    linear-gradient(135deg, #f7f4ef, #e9ddca);
+}
+
+/* remove overly fixed tall crop feel */
+.image-ribbon figure img,
+.eligibility-photo img,
+.form-photo img {
+  padding: 14px;
+}
+
+/* Landing-width legal and thank you pages */
+.legal-main,
+.thank-main {
+  padding-left: clamp(20px, 5vw, 72px);
+  padding-right: clamp(20px, 5vw, 72px);
+}
+
+.premium-hero,
+.premium-doc,
+.thank-card {
+  max-width: 100%;
+  width: 100%;
+}
+
+.premium-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.premium-doc {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.premium-doc section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thank-card {
+  max-width: none;
+  min-height: 520px;
+  display: grid;
+  align-content: center;
+}
+
+.thank-next {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 880px) {
+  .thank-next {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .assignment-card img {
+    height: 220px;
+  }
+  .image-ribbon figure img,
+  .eligibility-photo img,
+  .form-photo img {
+    padding: 8px;
+  }
+}
+
+
+/* =========================================
+   Landing page images: fill container fully
+   User wants zoomed / no blank space
+   ========================================= */
+
+/* Hero image should fully cover */
+.hero-backdrop {
+  background: #111;
+}
+.hero-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Ribbon side images should be full and premium */
+.image-ribbon figure {
+  overflow: hidden;
+}
+.image-ribbon figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Assignment cards should feel clean and fully filled */
+.assignment-card {
+  overflow: hidden;
+}
+.assignment-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Eligibility and form section photos should also fully fill */
+.eligibility-photo,
+.form-photo {
+  overflow: hidden;
+}
+.eligibility-photo img,
+.form-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* Remove decorative blank-looking backgrounds on landing image containers */
+.image-ribbon figure,
+.eligibility-photo,
+.form-photo,
+.assignment-card img,
+.hero-backdrop img {
+  background-image: none !important;
+}
+
+/* Better crop tuning per section */
+.hero-backdrop img {
+  object-position: center 38% !important;
+}
+.image-ribbon figure:first-child img {
+  object-position: center center !important;
+}
+.image-ribbon figure:last-child img {
+  object-position: center center !important;
+}
+.assignment-card:nth-child(1) img { object-position: center center !important; }
+.assignment-card:nth-child(2) img { object-position: center center !important; }
+.assignment-card:nth-child(3) img { object-position: center center !important; }
+.assignment-card:nth-child(4) img { object-position: center center !important; }
+.assignment-card:nth-child(5) img { object-position: center center !important; }
+.assignment-card:nth-child(6) img { object-position: center center !important; }
+.assignment-card:nth-child(7) img { object-position: center center !important; }
+.assignment-card:nth-child(8) img { object-position: center center !important; }
+.eligibility-photo img { object-position: center center !important; }
+.form-photo img { object-position: center center !important; }
+
+/* Keep legal / thank you wide as requested previously */
+.legal-main,
+.thank-main {
+  padding-left: clamp(20px, 5vw, 72px);
+  padding-right: clamp(20px, 5vw, 72px);
+}
+
+.premium-hero,
+.premium-doc,
+.thank-card {
+  max-width: 100%;
+  width: 100%;
+}
+
+.premium-hero {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.premium-doc {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.premium-doc section {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thank-card {
+  max-width: none;
+  min-height: 520px;
+  display: grid;
+  align-content: center;
+}
+
+.thank-next {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 880px) {
+  .thank-next {
+    grid-template-columns: 1fr;
+  }
+  .assignment-card img {
+    height: 210px;
+  }
+}
+
+@media (max-width: 620px) {
+  .assignment-card img {
+    height: 200px;
+  }
+}
+
+
+
+/* =========================================================
+   TRUE COVER FIX
+   User wants image to fully cover white area with no blanks
+   ========================================================= */
+
+/* Generic rule: image wrapper hides overflow */
+.hero-backdrop,
+.image-ribbon figure,
+.assignment-card,
+.eligibility-photo,
+.form-photo {
+  overflow: hidden !important;
+}
+
+/* Make image wrappers act like fixed visual frames */
+.image-ribbon figure {
+  display: block !important;
+  height: 520px !important;
+  min-height: 520px !important;
+  max-height: 520px !important;
+}
+
+.assignment-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.assignment-card > img {
+  display: block !important;
+  width: 100% !important;
+  height: 240px !important;
+  min-height: 240px !important;
+  max-height: 240px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  flex: 0 0 240px !important;
+}
+
+/* Critical fix for ribbon / side visuals */
+.image-ribbon figure > img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* Hero must always cover full hero area */
+.hero-backdrop > img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 38% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* Eligibility section image */
+.eligibility-photo {
+  display: block !important;
+  height: 580px !important;
+  min-height: 580px !important;
+}
+.eligibility-photo > img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* Form section image */
+.form-photo {
+  display: block !important;
+  height: 640px !important;
+  min-height: 640px !important;
+}
+.form-photo > img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* Remove any leftover space from figures */
+.image-ribbon figure img,
+.assignment-card img,
+.eligibility-photo img,
+.form-photo img,
+.hero-backdrop img {
+  vertical-align: middle !important;
+}
+
+/* Mobile tune */
+@media (max-width: 1120px) {
+  .image-ribbon figure {
+    height: 420px !important;
+    min-height: 420px !important;
+    max-height: 420px !important;
+  }
+  .eligibility-photo {
+    height: 460px !important;
+    min-height: 460px !important;
+  }
+  .form-photo {
+    height: 500px !important;
+    min-height: 500px !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .image-ribbon figure {
+    height: 320px !important;
+    min-height: 320px !important;
+    max-height: 320px !important;
+  }
+  .assignment-card > img {
+    height: 210px !important;
+    min-height: 210px !important;
+    max-height: 210px !important;
+    flex-basis: 210px !important;
+  }
+  .eligibility-photo {
+    height: 320px !important;
+    min-height: 320px !important;
+  }
+  .form-photo {
+    height: 360px !important;
+    min-height: 360px !important;
+  }
+}
